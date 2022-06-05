@@ -3,6 +3,7 @@ import Modal from '../../components/UI/Modal/Modal';
 
 const OrderModal = (props) => {
 
+
   const stanje = Object.keys(props.stanje).map(el => {
     return <p key={el}>{el}: {props.stanje[el]}</p>
   })
