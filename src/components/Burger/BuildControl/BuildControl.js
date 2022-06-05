@@ -1,10 +1,10 @@
 import React from 'react';
 
 const BuildControl = (props) => {
-  console.log(props.ing)
+
   const sastojci = Object.keys(props.ing).map(el => {
     return (
-      <div>
+      <div key={el}>
         <span>{el.toUpperCase()}: {props.ing[el]} </span>
         <button onClick={props.addIng} value={el}>More</button>
         <button onClick={props.removeIng} value={el}>Less</button>
@@ -17,6 +17,7 @@ const BuildControl = (props) => {
     <div>
       <p>Total: ${props.total.toFixed(2)}</p>
       {sastojci}
+      <button onClick={props.order} disabled={!props.orderPossible}>Order</button>
     </div>
   );
 }
