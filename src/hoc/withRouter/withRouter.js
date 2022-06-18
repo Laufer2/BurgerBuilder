@@ -7,7 +7,6 @@ const withRouter = (Component) => {
     const params = useParams();
     const location = useLocation();
 
-    //console.log(match)
     return (
       <Component
         navigate={navigate}
