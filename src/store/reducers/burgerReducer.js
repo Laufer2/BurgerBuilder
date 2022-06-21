@@ -22,7 +22,6 @@ const burgerSlice = createSlice({
       state.ingredients[action.payload.ingredient] -= 1;
       state.totalPrice -= action.payload.price;
     }
-
   }
 })
 

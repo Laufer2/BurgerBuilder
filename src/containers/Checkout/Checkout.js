@@ -1,37 +1,40 @@
-import React, { Component } from 'react';
-import { Outlet } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate, Outlet } from 'react-router-dom';
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 
-import withRouter from '../../hoc/withRouter/withRouter';
 
-class Checkout extends Component {
+const Checkout = (props) => {
 
-  cancelHandler = (e) => {
-    this.props.navigate(-1)
-  }
+  const ingredients = useSelector((state) => state.burger.ingredients);
+  const totalPrice = useSelector((state) => state.burger.totalPrice);
+  const navigate = useNavigate();
 
-  continueHandler = (e) => {
+  const cancelHandler = (e) => navigate(-1)
 
-    this.props.navigate('contact-data', {
+  const continueHandler = (e) => navigate('contact-data')
+
+  /*{  
+    this.props.navigate('contact-data' , {
       state: {
         ingredients: this.props.location.state.ingredients,
         totalPrice: this.props.location.state.totalPrice
       }
-    })
-  }
+    })*/
 
-  render() {
-    return (
-      <div>
-        <CheckoutSummary
-          ingredients={this.props.location.state.ingredients}
-          totalPrice={this.props.location.state.totalPrice}
-          cancelHandler={this.cancelHandler}
-          continueHandler={this.continueHandler} />
-        <Outlet />
-      </div>
-    )
-  }
+
+  return (
+    <div>
+      <CheckoutSummary
+        //ingredients={this.props.location.state.ingredients}
+        //totalPrice={this.props.location.state.totalPrice}
+        ingredients={ingredients}
+        totalPrice={totalPrice}
+        cancelHandler={cancelHandler}
+        continueHandler={continueHandler} />
+      <Outlet />
+    </div>
+  )
 }
 
-export default withRouter(Checkout);
+export default Checkout;

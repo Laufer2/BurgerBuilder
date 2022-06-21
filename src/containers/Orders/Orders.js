@@ -1,44 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Order from '../../components/Order/Order';
-import axios from '../../axios-orders';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import { useGetOrdersQuery } from '../../store/reducers/orderReducer';
 
-class Orders extends Component {
+const Orders = (props) => {
 
-  state = {
-    orders: [],
-    loading: true
+  const { data, error, isLoading } = useGetOrdersQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Oops, an error occured</div>;
   }
 
-  componentDidMount() {
+  const lista = Object.values(data).map((el, idx) => {
+    return <Order key={idx} ingredients={el.ingredients} price={el.price} />
+  })
 
-    axios.get('/orders.json')
-      .then(res => {
-        const data = Object.keys(res.data).map(el => {
-          return {
-            ingredients: res.data[el].ingredients,
-            price: res.data[el].price,
-            id: el
-          };
-        })
-        this.setState({ orders: data, loading: false })
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    //}
-  }
-
-  render() {
-    const lista = this.state.orders.map(el => {
-      return <Order key={el.id} ingredients={el.ingredients} price={el.price} />
-    });
-
-    return (
-      <div>
-        {lista}
-      </div>
-    )
-  }
+  return (
+    <div>
+      {lista}
+    </div>
+  );
 }
 
 export default Orders;
