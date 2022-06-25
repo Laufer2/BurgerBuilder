@@ -1,7 +1,7 @@
 import React from 'react';
 import Order from '../../components/Order/Order';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import { useGetOrdersQuery } from '../../store/reducers/orderReducer';
+//import Spinner from '../../components/UI/Spinner/Spinner';
+import { useGetOrdersQuery } from '../../store/reducers/fetchApi';
 
 const Orders = (props) => {
 

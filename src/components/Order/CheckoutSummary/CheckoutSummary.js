@@ -1,6 +1,7 @@
 import React from 'react';
 import Burger from '../../Burger/Burger';
 import Button from '../../UI/Button/Button';
+import classes from './CheckoutSummary.module.css';
 
 const CheckoutSummary = (props) => {
 
@@ -10,9 +11,9 @@ const CheckoutSummary = (props) => {
 
   return (
 
-    <div style={{ width: '100%', margin: 'auto' }}>
+    <div className={classes.CheckoutSummary}>
       <Burger ingredients={props.ingredients} />
-      <ul>
+      <ul style={{ 'list-style-type': 'none' }}>
         {sastojci}
       </ul>
       <p>Total price: {props.totalPrice.toFixed(2)}</p>

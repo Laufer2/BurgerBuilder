@@ -1,13 +1,13 @@
 import burgerReducer from './reducers/burgerReducer';
 import { configureStore } from '@reduxjs/toolkit';
-import { ordersApi } from './reducers/orderReducer';
+import { fetchApi } from './reducers/fetchApi';
 
 const store = configureStore({
   reducer: {
-    [ordersApi.reducerPath]: ordersApi.reducer,
+    [fetchApi.reducerPath]: fetchApi.reducer,
     burger: burgerReducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ordersApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(fetchApi.middleware),
 });
 
 export default store;
